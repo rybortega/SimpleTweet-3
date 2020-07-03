@@ -64,12 +64,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         TextView tvRelativeTime;
+        ImageView ivTweetImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById((R.id.ivProfileImage));
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvRelativeTime = itemView.findViewById(R.id.tvRelativeTime);
+            ivTweetImage = itemView.findViewById(R.id.ivTweetImage);
         }
 
         public void bind(Tweet tweet) {
@@ -78,6 +80,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             tvRelativeTime.setText(getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+
+            if (tweet.additionalImageUrl != null) {
+                ivTweetImage.getLayoutParams().height = 300;
+                Glide.with(context).load(tweet.additionalImageUrl).into(ivTweetImage);
+            }
+            else {
+                ivTweetImage.getLayoutParams().height = 0;
+            }
         }
     }
     private static final int SECOND_MILLIS = 1000;

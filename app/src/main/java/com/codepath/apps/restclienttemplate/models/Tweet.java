@@ -17,6 +17,7 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String additionalImageUrl;
 
 
     public Tweet(){};
@@ -28,6 +29,13 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
 
+        JSONObject entities = jsonObject.getJSONObject("entities");
+        if (entities.has("media")) {
+            tweet.additionalImageUrl = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        }
+        else {
+            tweet.additionalImageUrl = null;
+        }
         return tweet;
     }
 
