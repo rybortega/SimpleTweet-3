@@ -5,6 +5,7 @@
 Here's a walkthrough of implemented user stories:
 
 https://imgur.com/a/ITWsyzh
+
 https://imgur.com/a/4EZgEtz 
 
 GIF created with [Kap](https://getkap.co/).
